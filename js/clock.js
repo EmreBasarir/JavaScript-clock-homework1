@@ -28,15 +28,15 @@ if (!userName) {
     timer.innerHTML = `${timeSecond}`
     h1Info.classList.add('text-warning')
     h1Info.innerHTML = `Sayfa Yenilenecek`
-    const countDown = setInterval(() => {
+    const countDown = setInterval(() => {       // setInterval ile geri 1sn geri sayım
         timeSecond--;
         timer.innerHTML = `${timeSecond}`
         if (timeSecond <= 0) {
-            clearInterval(countDown)
-            location.reload();            
+            clearInterval(countDown)            // Aktüel saniye <= 0 ise interval ı resetle
+            location.reload();                  // sayfa yenileme komutu
         }
     }, 1000)
-} else {
+} else {  // isim varsa h2 class'ını ekle ve alttaki yazıyı yazdır.
     timer.classList.add("h2")
     timer.innerHTML = `<strong style=color:white>${userName}</strong> adlı isim girildi, lütfen sayfayı isim girmeden de deneyiniz`
 }
@@ -46,25 +46,19 @@ let clockInfo = document.querySelector("#myClock")  // myClock id'si ile div'e u
 function showTime() {
     const today = new Date();       // today değişkenine Date'in örneğini oluşturdum
     let h = today.getHours();       // h değişkenine saat bilgisi çekildi
-    let m = today.getMinutes();     // m bilgisine dakika bilgisi çekildi
-    let s = today.getSeconds();     // s bilgisine saniye bilgisi çekildi
+    let m = today.getMinutes();     // m değişkenine dakika bilgisi çekildi
+    let s = today.getSeconds();     // s değişkenine saniye bilgisi çekildi
     m = checkTime(m);
     s = checkTime(s);
-    clockInfo.innerHTML = h + ":" + m + ":" + s;
+    clockInfo.innerHTML = h + ":" + m + ":" + s;    // formunda ekrana yaz
     setTimeout(showTime, 1000);
 }
 
-function checkTime(i) {
-    if (i < 10) { i = "0" + i };
+function checkTime(i) { // 10'dan küçük basamakları sıfırlı gösterme iki hane olarak.
+    if (i < 10) { i = "0" + i };    
     return i;
 }
 
-function refreshPage() {
-    window.location.reload
-}
-// const refreshTime = setTimeout(refreshPage(),8000)
-
-// sayfa yenileme
 
 
 
